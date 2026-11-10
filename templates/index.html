@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickCart - AI Customer Support</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="chat-container">
+
+        <header class="chat-header">
+            <h1>QuickCart</h1>
+            <p>AI Customer Support Assistant</p>
+        </header>
+
+        <main class="chat-box">
+
+            <div class="welcome-message">
+                <h2>Welcome to QuickCart!</h2>
+                <p>How can I help you today?</p>
+            </div>
+
+            <div id="chat-messages">
+                <div class="bot-message">
+                    Hello! I'm your QuickCart AI assistant.
+                    Ask me anything about your order.
+                </div>
+            </div>
+
+        </main>
+
+        <form id="chat-form" class="chat-input">
+            <input
+                type="text"
+                id="user-message"
+                placeholder="Type your message..."
+                required
+            >
+
+            <button type="submit">Send</button>
+        </form>
+
+    </div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
