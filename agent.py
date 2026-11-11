@@ -353,19 +353,33 @@ def ask_ai(user_message, conversation_history=None, verified_orders=None, agent_
         }
     ]
 
+    
     messages = [
-    {
-        "role": "system",
-        "content": """
-        You are QuickCart's friendly customer support assistant.
-        Remember information shared earlier in the conversation,
-        including the customer's name and order ID.
-        Do not repeatedly ask for information already provided.
-        Never invent order details.
-        Only use information returned by the tools.
-        """
-    }
-]
+        {
+            "role": "system",
+            "content": """
+            You are QuickCart's friendly customer support assistant.
+
+            For simple greetings like Hi, Hello, or Hey,
+            respond with a short and friendly greeting.
+
+            Do not mention customer names, order IDs,
+            delivery status, or previous order details
+            during simple greetings.
+
+            Only discuss order details when the customer
+            specifically asks an order-related question.
+
+            Use previous conversation information only
+            when relevant to the current question.
+
+            Do not repeatedly ask for information already provided.
+            Never invent order details.
+            Only use information returned by the tools.
+            """
+        }
+    ]
+
 
     if conversation_history:
      messages.extend(conversation_history[-10:])
@@ -436,6 +450,7 @@ def ask_ai(user_message, conversation_history=None, verified_orders=None, agent_
                 result = submit_customer_refund(
                     order_id, function_args["reason"]
                 )
+                return result
 
             elif function_name == "check_customer_refund_status":
                 result = check_customer_refund_status(order_id)
